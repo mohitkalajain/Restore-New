@@ -1,3 +1,5 @@
+using API.DTOs;
+using API.Entities;
 using API.Helper;
 using API.Helper.Constants;
 using API.Repository.Interface;
@@ -34,9 +36,9 @@ namespace API.Controllers
             string buyerId = Request.Cookies["buyerId"];
 
             var result = await _basketService.CreateBasket(buyerId, productId, quantity);
-            if (result.StatusCode == StatusCodes.Status200OK && result.Response is string newBuyerId)
+            if (result.StatusCode == StatusCodes.Status200OK && result.Response is BasketDTO basket && !string.IsNullOrEmpty(buyerId))
             {
-                Response.Cookies.Append("buyerId", newBuyerId, new CookieOptions
+                Response.Cookies.Append("buyerId", basket.BuyerId, new CookieOptions
                 {
                     IsEssential = true,
                     Expires = DateTimeOffset.Now.AddDays(30)

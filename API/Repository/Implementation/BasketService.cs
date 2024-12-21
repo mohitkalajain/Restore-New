@@ -80,8 +80,8 @@ namespace API.Repository.Implementation
 
             // Save changes to the database
             await _storeContext.SaveChangesAsync();
-
-            return _responseService.Success(MessageConstants.Success, basket.BuyerId);
+            var res = await this.GetBasket(buyerId);
+            return _responseService.Success(MessageConstants.Success, res.Response);
         }
 
         public async Task<ResponseVM> RemoveBasket(string buyerId, int productId, int quantity)
