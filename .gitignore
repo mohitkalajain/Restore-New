@@ -46,7 +46,7 @@ package-lock.json
 .DS_Store
 Thumbs.db
 desktop.ini
-.vs/ReStore/FileContentIndex/2e89121c-dddd-4597-bdc4-858994d22f77.vsidx
-.vs/ReStore/FileContentIndex/a7060b9f-f5fc-4430-94f4-09521b091ded.vsidx
-.vs/ReStore/FileContentIndex/c1e2881f-533b-4ff2-ad10-6cba65c91a01.vsidx
-.vs/ReStore/FileContentIndex/f6e47b88-e135-46ea-9d46-778703929a80.vsidx
+.vs/
+store-db.wal
+store-db.shm
+
