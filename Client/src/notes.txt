@@ -1,0 +1,23 @@
+React Hooks Used
+
+1) useState
+2) useEffect
+
+
+Axios
+ReactRouter
+Intercepter
+
+1) React Router
+-- Install Package
+   npm install react-router-dom
+
+2) Axios
+
+----------------
+Error Handling
+Developer Exception Page 
+Middleware
+Http Response Errors
+Client Side Error Handling 
+Debugging
