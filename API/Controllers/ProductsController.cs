@@ -27,12 +27,13 @@ namespace API.Controllers
         [HttpGet("get/{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Get(int id)
         {
 
             if (id == 0)
-                return ResponseHandler.CreateResponse(ResponseVM.InvalidRequest(MessageConstants.InvalidValue));
+                return ResponseHandler.CreateResponse(ResponseVM.InvalidRequest(MessageConstants.InvalidValue,HttpContext?.TraceIdentifier));
 
             return ResponseHandler.CreateResponse(await _productService.Get(id));
         }

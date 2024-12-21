@@ -29,5 +29,12 @@ namespace API.Helper.Constants
     public const string NoDataFound = "No data available.";
     public const string ActionNotAllowed = "This action is not allowed.";
     public const string TokenExpired = "Your session token has expired.";
+
+
+        public const string BasketSuccess = "Item removed or quantity updated successfully.";
+        public const string BasketItemNotFound = "Item not found in the basket.";
+        public const string BasketInsufficientQuantity = "Insufficient quantity in the basket.";
+        public const string UnexpectedError = "An unexpected error occurred.";
+
     }
 }

@@ -6,5 +6,6 @@ namespace API.Repository.Interface
     {
         ResponseVM Success(string message, dynamic response = null);
         ResponseVM NoContentFound(string message);
+        ResponseVM BadRequest(string message);
     }
 }

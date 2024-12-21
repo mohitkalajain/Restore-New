@@ -64,7 +64,8 @@ namespace API.Middleware
                 flag: true,
                 statusCode: context.Response.StatusCode,
                 message: _env.IsDevelopment() ? ex.StackTrace : string.Empty,
-                response: ex.Message
+                response: ex.Message,
+                traceId: context?.TraceIdentifier
             );
 
             var options = new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };

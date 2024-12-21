@@ -43,7 +43,7 @@ namespace API.Repository.Implementation
 
             Product product = await _storeContext.Products.FirstOrDefaultAsync(x => x.Id == id);
             if (product is null)
-                return _responseService.NoContentFound(MessageConstants.NoDataFound);
+                return _responseService.NoContentFound(MessageConstants.NotFound);
 
             return _responseService.Success(MessageConstants.Success, product);
 

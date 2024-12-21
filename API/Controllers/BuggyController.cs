@@ -6,6 +6,7 @@ namespace API.Controllers
 {
     public class BuggyController : BaseApiController
     {
+
         [HttpGet("not-found")]
         public async Task<IActionResult> GetNotFound()
         {
@@ -13,7 +14,8 @@ namespace API.Controllers
                     true,
                     statusCode: StatusCodes.Status404NotFound,
                     message: "Resource not found",
-                    new { }
+                    new { },
+                    traceId: HttpContext?.TraceIdentifier
             );
             return await Task.FromResult(ResponseHandler.CreateResponse(response));
         }
@@ -24,7 +26,9 @@ namespace API.Controllers
                 true,
                 statusCode: StatusCodes.Status400BadRequest,
                 message: "This is a bad request",
-               new { });
+               new { },
+               traceId: HttpContext?.TraceIdentifier
+               );
             return await Task.FromResult(ResponseHandler.CreateResponse(response));
         }
         [HttpGet("unauthorized")]
@@ -34,7 +38,9 @@ namespace API.Controllers
                true,
                statusCode: StatusCodes.Status401Unauthorized,
                message: "unauthorized request",
-              new { });
+              new { },
+              traceId: HttpContext?.TraceIdentifier
+              );
             return await Task.FromResult(ResponseHandler.CreateResponse(response));
         }
         [HttpGet("validation-error")]
@@ -53,7 +59,8 @@ namespace API.Controllers
                     .ToDictionary(
                         ms => ms.Key,
                         ms => ms.Value.Errors.Select(e => e.ErrorMessage).ToArray()
-                    )
+                    ),
+                traceId: HttpContext?.TraceIdentifier
            );
             return await Task.FromResult(ResponseHandler.CreateResponse(response));
         }
@@ -71,7 +78,8 @@ namespace API.Controllers
                     true,
                     statusCode: StatusCodes.Status500InternalServerError,
                     message: "Internal server error",
-                    response: ex.Message
+                    response: ex.Message,
+                    traceId: HttpContext?.TraceIdentifier
                 );
                 return await Task.FromResult(ResponseHandler.CreateResponse(response));
             }

@@ -1,4 +1,5 @@
 using API.Data;
+using API.Middleware;
 using API.Repository.Implementation;
 using API.Repository.Interface;
 using Microsoft.EntityFrameworkCore;
@@ -18,9 +19,13 @@ builder.Services.AddCors();
 
 builder.Services.AddScoped<IProductService,ProductService>();
 builder.Services.AddScoped<IResponseService,ResponseService>();
+builder.Services.AddScoped<IBasketService,BasketService>();
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
 
 var app = builder.Build();
 
+app.UseMiddleware<ExceptionMiddleware>();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -30,7 +35,7 @@ if (app.Environment.IsDevelopment())
 
 // app.UseHttpsRedirection();
 app.UseCors(options=>{
-options.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:3000");
+options.AllowAnyHeader().AllowAnyMethod().AllowCredentials().WithOrigins("http://localhost:3000");
 });
 app.UseAuthorization();
 
