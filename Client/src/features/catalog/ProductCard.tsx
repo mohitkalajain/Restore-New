@@ -13,15 +13,24 @@ import { Product } from "../../app/models/product";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import agent from "../../app/api/agent";
+import { useStoreContext } from "../../app/context/StoreContext";
 interface Props {
   product: Product;
 }
 export default function ProductCard({ product }: Props) {
   const [loading, setLoading] = useState(false);
-
+  const { setBasket } = useStoreContext();
   const handleAddItem = (productId: number) => {
     setLoading(true);
     agent.Basket.addItem(productId)
+      .then((basket) => {
+        //check flag and status code 200 then update basket
+        if (basket.data.flag && basket.data.statusCode === 200) {
+          setBasket(basket.data.response);
+        } else {
+          console.error("Error:", basket.data.message);
+        }
+      })
       .catch((error) => console.log(error))
       .finally(() => setLoading(false));
   };
@@ -54,7 +63,7 @@ export default function ProductCard({ product }: Props) {
         />
         <CardContent>
           <Typography gutterBottom variant="h5" color="secondary">
-            &#x20b9; {(product.price / 100).toFixed(2)}
+            &#x20b9; {product.price.toFixed(2)}
           </Typography>
           <Typography variant="body2" sx={{ color: "text.secondary" }}>
             {product.brand} / {product.type}
