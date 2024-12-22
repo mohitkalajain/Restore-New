@@ -70,8 +70,8 @@ namespace API.Repository.Implementation
             if (basket is null)
             {
                 //create new basket
-                string newBuyerId = Guid.NewGuid().ToString();
-                basket = new Basket { BuyerId = newBuyerId };
+                buyerId = Guid.NewGuid().ToString();
+                basket = new Basket { BuyerId = buyerId };
                 _storeContext.Baskets.Add(basket);
             }
 

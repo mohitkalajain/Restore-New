@@ -36,7 +36,7 @@ namespace API.Controllers
             string buyerId = Request.Cookies["buyerId"];
 
             var result = await _basketService.CreateBasket(buyerId, productId, quantity);
-            if (result.StatusCode == StatusCodes.Status200OK && result.Response is BasketDTO basket && !string.IsNullOrEmpty(buyerId))
+            if (result.StatusCode == StatusCodes.Status200OK && result.Response is BasketDTO basket && string.IsNullOrEmpty(buyerId))
             {
                 Response.Cookies.Append("buyerId", basket.BuyerId, new CookieOptions
                 {

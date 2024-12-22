@@ -3,12 +3,8 @@
   "WorkspaceRootPath": "E:\\Projects\\Restore\\Restore-New\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{2B69B432-6F57-4E33-B83A-33FA7FB78313}|API\\API.csproj|e:\\projects\\restore\\restore-new\\api\\controllers\\basketcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2B69B432-6F57-4E33-B83A-33FA7FB78313}|API\\API.csproj|solutionrelative:api\\controllers\\basketcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2B69B432-6F57-4E33-B83A-33FA7FB78313}|API\\API.csproj|e:\\projects\\restore\\restore-new\\api\\repository\\implementation\\basketservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2B69B432-6F57-4E33-B83A-33FA7FB78313}|API\\API.csproj|solutionrelative:api\\repository\\implementation\\basketservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2B69B432-6F57-4E33-B83A-33FA7FB78313}|API\\API.csproj|e:\\projects\\restore\\restore-new\\api\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{2B69B432-6F57-4E33-B83A-33FA7FB78313}|API\\API.csproj|solutionrelative:api\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,7 +14,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -30,28 +26,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "BasketService.cs",
-              "DocumentMoniker": "E:\\Projects\\Restore\\Restore-New\\API\\Repository\\Implementation\\BasketService.cs",
-              "RelativeDocumentMoniker": "API\\Repository\\Implementation\\BasketService.cs",
-              "ToolTip": "E:\\Projects\\Restore\\Restore-New\\API\\Repository\\Implementation\\BasketService.cs",
-              "RelativeToolTip": "API\\Repository\\Implementation\\BasketService.cs",
-              "ViewState": "AgIAABQAAAAAAAAAAAA7wCIAAAAVAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-21T13:09:37.909Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "BasketController.cs",
-              "DocumentMoniker": "E:\\Projects\\Restore\\Restore-New\\API\\Controllers\\BasketController.cs",
-              "RelativeDocumentMoniker": "API\\Controllers\\BasketController.cs",
-              "ToolTip": "E:\\Projects\\Restore\\Restore-New\\API\\Controllers\\BasketController.cs",
-              "RelativeToolTip": "API\\Controllers\\BasketController.cs",
-              "ViewState": "AgIAAAoAAAAAAAAAAAAxwBIAAAAiAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-21T13:09:38.014Z",
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "E:\\Projects\\Restore\\Restore-New\\API\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "API\\Properties\\launchSettings.json",
+              "ToolTip": "E:\\Projects\\Restore\\Restore-New\\API\\Properties\\launchSettings.json",
+              "RelativeToolTip": "API\\Properties\\launchSettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-12-22T04:41:24.711Z",
               "EditorCaption": ""
             }
           ]
