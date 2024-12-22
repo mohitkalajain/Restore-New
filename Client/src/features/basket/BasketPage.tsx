@@ -106,7 +106,7 @@ export default function BasketPage() {
                   </LoadingButton>
                 </TableCell>
                 <TableCell align="right">
-                  {(item.price * item.quantity).toFixed(2)}
+                  {currencyFormat(item.price * item.quantity)}
                 </TableCell>
                 <TableCell align="right">
                   <LoadingButton

@@ -3,6 +3,7 @@ export function getCookie(key:string){
     return buyerId?buyerId.pop():"";
 }
 
-export function currencyFormat(amount:number){
-    return `₹${amount.toFixed(2)}`
-}
+export function currencyFormat(amount: number): string {
+    return `₹${amount.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+  }
+  
