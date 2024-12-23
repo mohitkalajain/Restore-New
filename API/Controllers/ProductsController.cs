@@ -1,5 +1,7 @@
+using API.Extensions;
 using API.Helper;
 using API.Helper.Constants;
+using API.Helper.Pagination;
 using API.Repository.Interface;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,12 +18,22 @@ namespace API.Controllers
             _logger = logger;
         }
 
-        [HttpGet("get")]
+        [HttpGet("getproducts")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> Get([FromQuery] ProductParams productParams)
         {
-            return ResponseHandler.CreateResponse(await _productService.Get());
+            var result = await _productService.Get(productParams);
+            if (result.StatusCode == StatusCodes.Status200OK && result.Response is not null)
+            {
+                var responseObject = result.Response as dynamic;
+                if (responseObject?.MetaData is not null)
+                {
+                    Response.AddPaginationHeader(responseObject.MetaData as MetaData);
+                }
+
+            }
+            return ResponseHandler.CreateResponse(result);
         }
 
         [HttpGet("get/{id}")]

@@ -1,7 +1,9 @@
 using API.Data;
 using API.Entities;
+using API.Extensions;
 using API.Helper;
 using API.Helper.Constants;
+using API.Helper.Pagination;
 using API.Models;
 using API.Repository.Interface;
 using Microsoft.EntityFrameworkCore;
@@ -30,11 +32,22 @@ namespace API.Repository.Implementation
         /// Return All prodcct List
         /// </summary>
         /// <returns></returns>
-        public async Task<ResponseVM> Get()
+        
+        public async Task<ResponseVM> Get(ProductParams productParams)
         {
 
-            var productList = await _storeContext.Products.ToListAsync();
-            return _responseService.Success(MessageConstants.Success, productList);
+            var query =  _storeContext.Products
+                                      .Sort(productParams.OrderBy)
+                                      .Search(productParams.SearctTerm)
+                                      .Filter(productParams.Brands, productParams.Types)
+                                      .AsQueryable();
+           
+            var result = await PagedList<Product>.ToPagedList(query, 
+                                                              productParams.PageNumber, 
+                                                              productParams.PageSize);
+           
+
+            return _responseService.Success(MessageConstants.Success,result);
 
         }
 
