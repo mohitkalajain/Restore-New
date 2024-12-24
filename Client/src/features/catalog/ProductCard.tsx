@@ -13,20 +13,21 @@ import { Product } from "../../app/models/product";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import agent from "../../app/api/agent";
-import { useStoreContext } from "../../app/context/StoreContext";
+import { useAppDispatch } from "../../app/store/configureStore";
+import { setBasket } from "../basket/basketSlice";
 interface Props {
   product: Product;
 }
 export default function ProductCard({ product }: Props) {
   const [loading, setLoading] = useState(false);
-  const { setBasket } = useStoreContext();
+  const dispatch= useAppDispatch();
   const handleAddItem = (productId: number) => {
     setLoading(true);
     agent.Basket.addItem(productId)
       .then((basket) => {
         //check flag and status code 200 then update basket
         if (basket.data.flag && basket.data.statusCode === 200) {
-          setBasket(basket.data.response);
+          dispatch(setBasket(basket.data.response));
         } else {
           console.error("Error:", basket.data.message);
         }

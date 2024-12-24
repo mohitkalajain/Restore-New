@@ -12,16 +12,18 @@ import {
   Typography,
 } from "@mui/material";
 import { Add, Delete, Remove } from "@mui/icons-material";
-import { useStoreContext } from "../../app/context/StoreContext";
 import { useState } from "react";
 import agent from "../../app/api/agent";
 import { LoadingButton } from "@mui/lab";
 import { currencyFormat } from "../../app/utils/util";
 import BasketSummary from "./BasketSummary";
 import { Link } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../../app/store/configureStore";
+import { removeItem, setBasket } from "./basketSlice";
 
 export default function BasketPage() {
-  const { basket, setBasket, removeItem } = useStoreContext();
+  const { basket } = useAppSelector(state=>state.basket);
+  const dispatch=useAppDispatch();
   const [status, setStatus] = useState({
     loading: false,
     name: "",
@@ -31,7 +33,7 @@ export default function BasketPage() {
     agent.Basket.addItem(productId)
       .then((basket) => {
         if (basket.data.flag && basket.data.statusCode === 200) {
-          setBasket(basket.data.response);
+          dispatch(setBasket(basket.data.response));
         } else {
           console.error("Error:", basket.data.message);
         }
@@ -43,7 +45,7 @@ export default function BasketPage() {
   const handleRemoveItem = (productId: number, quantity = 1, name: string) => {
     setStatus({ loading: true, name });
     agent.Basket.removeItem(productId, quantity)
-      .then(() => removeItem(productId, quantity))
+      .then(() => dispatch(removeItem({productId, quantity})))
       .catch((error) => console.log(error))
       .finally(() => setStatus({ loading: false, name: "" }));
   };
