@@ -1,5 +1,7 @@
 ﻿using API.DTOs;
 using API.Entities;
+using API.Helper.Jwt;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,9 +10,11 @@ namespace API.Controllers
     public class AccountController : BaseApiController
     {
         private readonly UserManager<User> _userManager;
-        public AccountController(UserManager<User> userManager)
+        private readonly TokenConfiguration _tokenConfiguration;
+        public AccountController(UserManager<User> userManager, TokenConfiguration tokenConfiguration)
         {
             _userManager = userManager;
+            _tokenConfiguration = tokenConfiguration;
         }
 
         [HttpPost("login")]
@@ -20,7 +24,7 @@ namespace API.Controllers
             if (user == null || !await _userManager.CheckPasswordAsync(user,loginDto.Password))
                 return Unauthorized();
 
-            return Ok(user);
+            return Ok(new UserDto { Email=user.Email,Token= await _tokenConfiguration.GenerateToken(user)});
         }
 
         [HttpPost("register")]
@@ -41,6 +45,15 @@ namespace API.Controllers
 
             await _userManager.AddToRoleAsync(user, "Member");
             return Ok();
+        }
+
+
+        [Authorize]
+        [HttpPost("currentUser")]
+        public async Task<IActionResult> GetCurrentUser()
+        {
+            var user = await _userManager.FindByNameAsync(User.Identity.Name);
+            return Ok(new UserDto { Email = user.Email, Token = await _tokenConfiguration.GenerateToken(user) });
         }
     }
 }
